@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# PAM helper script to authenticate users using RStudio Server.
+# Requires that env var RSTUDIO_PASSWORD is set.
+# Passed to RStudio Server using --auth-pam-helper-path=<$0>
+# Note! If RStudio Server is started in a container this file must be
+# available inside the container, e.g. bind-mounted or baked in.
+
+main()
+{
+  [ $# -lt 1 ] && echo "Usage: auth USERNAME" && exit 1
+  local USERNAME="$1"
+  [ -z "$RSTUDIO_PASSWORD" ] && echo "RSTUDIO_PASSWORD not set?" && exit 1
+  read -s -p "Password: " PASSWORD
+  echo ""
+  if [ "$USERNAME" = "$USER" -a "$PASSWORD" = "$RSTUDIO_PASSWORD" ]; then
+    exit 0
+  else
+    echo "Invalid authentication user $USER"
+    exit 1
+  fi
+}
+
+main "$@"

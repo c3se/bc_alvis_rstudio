@@ -1,0 +1,14 @@
+<%-
+  base_slurm_args = []
+  slurm_args = base_slurm_args + ["--gpus-per-node", node_type]
+-%>
+---
+batch_connect:
+  template: "basic"
+  conn_params:
+    - csrf_token # Required by RStudio
+script:
+  native:
+    <%- slurm_args.each do |arg| %>
+    - "<%= arg %>"
+    <%- end %>
