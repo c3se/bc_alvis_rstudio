@@ -36,6 +36,8 @@ port=$(find_port)
 -%>
 export csrf_token="<%= csrf_token %>"
 
+source <%= context.version %>
+
 # Generate SHA1 encrypted password (requires OpenSSL installed)
 SALT="$(create_passwd 16)"
 password="$(create_passwd 16)"
