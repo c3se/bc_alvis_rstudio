@@ -32,6 +32,13 @@ You will need to make the script `rstudio-server-auth` available for RStudio
 Server instances as it is used for authentication. At Alvis it is placed on a
 shared filesystem.
 
+## Customizations
+You can customize which RStudio Server container is used by creating `~/bc_alvis_rstudio.env`.
+```
+# Use a custom RStudio Server singularity image
+export RSTUDIO_SERVER_IMAGE=$HOME/my_rstudio_server.sif
+```
+
 ## Debugging
 RStudio logs gets written to default location `$HOME/.local/share/rstudio/`.
 
