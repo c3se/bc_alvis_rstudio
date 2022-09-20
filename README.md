@@ -1,5 +1,5 @@
-# Batch Connect - Alvis OnDemand RStudio
 ![Alvis](alvis_logo.svg)
+# Batch Connect - Alvis OnDemand RStudio
 
 Interactive App Plugin for running RStudio Server at [Alvis OnDemand](https://portal.c3se.chalmers.se).
 
