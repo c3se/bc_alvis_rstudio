@@ -33,7 +33,7 @@ Server instances as it is used for authentication. At Alvis it is placed on a
 shared filesystem.
 
 ## Customizations
-You can customize which RStudio Server container is used by creating `~/bc_alvis_rstudio.env`.
+You can customize which RStudio Server container is used by creating `~/portal/rstudio/bc_alvis_rstudio.env`.
 ```
 # Use a custom RStudio Server singularity image
 export RSTUDIO_SERVER_IMAGE=$HOME/my_rstudio_server.sif
