@@ -46,8 +46,13 @@ attributes:
     widget: "select"
     label: "Runtime"
     options:
-      - [ "Container: RStudio-Server-R-4.1.3-TensorFlow-2.4.2",  "/apps/portal/rstudio/RStudio-Server-R-4.1.3-TensorFlow-2.4.2.env" ]
-      - [ "User specified (create ~/portal/rstudio/bc_alvis_rstudio.env)",  "~/bc_alvis_rstudio.env" ]
+<% glob_prettify_lookup(["/apps/portal/rstudio/*.sh"]).each do |path| %>
+      - [ "<%= path %>", "<%= path %>" ]
+<% end %>
+      - [ "== User specified (create ~/portal/rstudio/*.sh) ==",  "" ]
+<% glob_prettify_lookup(["#{Dir.home}/portal/rstudio/*.sh"]).each do |path| %>
+      - [ "<%= path %>", "<%= path %>" ]
+<% end %>
     help: "See https://github.com/c3se/bc_alvis_rstudio for custom applications"
   working_dir:
     label: "Working Directory"
