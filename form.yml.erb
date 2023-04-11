@@ -46,12 +46,12 @@ attributes:
     widget: "select"
     label: "Runtime"
     options:
-<% glob_prettify_lookup(["/apps/portal/rstudio/*.sh"]).each do |path| %>
-      - [ "<%= path %>", "<%= path %>" ]
+<% glob_prettify_lookup(["/apps/portal/rstudio/*.sh"]).each do |pretty_path, path| %>
+      - [ "<%= pretty_path %>", "<%= path %>" ]
 <% end %>
       - [ "== User specified (create ~/portal/rstudio/*.sh) ==",  "" ]
-<% glob_prettify_lookup(["#{Dir.home}/portal/rstudio/*.sh"]).each do |path| %>
-      - [ "<%= path %>", "<%= path %>" ]
+<% glob_prettify_lookup(["#{Dir.home}/portal/rstudio/*.sh"]).each do |pretty_path, path| %>
+      - [ "<%= pretty_path %>", "<%= path %>" ]
 <% end %>
     help: "See https://github.com/c3se/bc_alvis_rstudio for custom applications"
   working_dir:
