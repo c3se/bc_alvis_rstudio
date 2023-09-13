@@ -1,6 +1,6 @@
 <%-
   base_slurm_args = []
-  slurm_args = base_slurm_args + ["--gpus-per-node", node_type]
+  slurm_args = base_slurm_args + resource.split
 -%>
 ---
 batch_connect:

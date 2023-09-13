@@ -1,47 +1,56 @@
 ---
-cluster: "alvis"
+cluster:
+  - "alvis"
+  - "vera"
 form:
   - cluster
-  - bc_account
+  - auto_accounts
   - bc_num_hours
-  - node_type
+  - resource
   - version
   - working_dir
   - bc_email_on_started
 attributes:
-  bc_account:
+  resource:
     widget: "select"
-    label: "Project"
-    options: [<%= SlurmData.accounts.join(', ') %>]
-  node_type:
-    widget: "select"
-    label: "Node type"
+    label: "Resource"
     options:
-      - [ "T4:1", "T4:1", data-option-for-alvis: true ]
-      - [ "T4:2", "T4:2", data-option-for-alvis: true ]
-      - [ "T4:3", "T4:3", data-option-for-alvis: true ]
-      - [ "T4:4", "T4:4", data-option-for-alvis: true ]
-      - [ "T4:5", "T4:5", data-option-for-alvis: true ]
-      - [ "T4:6", "T4:6", data-option-for-alvis: true ]
-      - [ "T4:7", "T4:7", data-option-for-alvis: true ]
-      - [ "T4:8", "T4:8", data-option-for-alvis: true ]
-      - [ "A40:1", "A40:1", data-option-for-alvis: true ]
-      - [ "A40:2", "A40:2", data-option-for-alvis: true ]
-      - [ "A40:3", "A40:3", data-option-for-alvis: true ]
-      - [ "A40:4", "A40:4", data-option-for-alvis: true ]
-      - [ "A100:1", "A100:1", data-option-for-alvis: true ]
-      - [ "A100:2", "A100:2", data-option-for-alvis: true ]
-      - [ "A100:3", "A100:3", data-option-for-alvis: true ]
-      - [ "A100:4", "A100:4", data-option-for-alvis: true ]
-      - [ "V100:1", "V100:1", data-option-for-alvis: true ]
-      - [ "V100:2", "V100:2", data-option-for-alvis: true ]
-      - [ "V100:3", "V100:3", data-option-for-alvis: true ]
-      - [ "V100:4", "V100:4", data-option-for-alvis: true ]
-      - [ "A100fat:1", "A100fat:1", data-option-for-alvis: true ]
-      - [ "A100fat:2", "A100fat:2", data-option-for-alvis: true ]
-      - [ "A100fat:3", "A100fat:3", data-option-for-alvis: true ]
-      - [ "A100fat:4", "A100fat:4", data-option-for-alvis: true ]
-
+      - [ "1 core", "-N 1 -n 1" ]  # vera
+      - [ "2 cores", "-N 1 -n 2" ]  # vera
+      - [ "4 cores", "-N 1 -n 4" ]  # vera
+      - [ "8 cores", "-N 1 -n 8" ]  # vera
+      - [ "16 cores", "-N 1 -n 16" ]  # vera
+      - [ "32 cores", "-N 1 -n 32" ]  # vera
+      - [ "64 cores", "-C ICELAKE -n 64" ]  # vera
+      - [ "GPU:", "x", disabled: true ]
+      - [ "T4:1", "--gpus-per-node=T4:1" ]
+      - [ "T4:2", "--gpus-per-node=T4:2" ]  # alvis
+      - [ "T4:3", "--gpus-per-node=T4:3" ]  # alvis
+      - [ "T4:4", "--gpus-per-node=T4:4" ]  # alvis
+      - [ "T4:5", "--gpus-per-node=T4:5" ]  # alvis
+      - [ "T4:6", "--gpus-per-node=T4:6" ]  # alvis
+      - [ "T4:7", "--gpus-per-node=T4:7" ]  # alvis
+      - [ "T4:8", "--gpus-per-node=T4:8" ]  # alvis
+      - [ "V100:1", "--gpus-per-node=V100:1" ]
+      - [ "V100:2", "--gpus-per-node=V100:2" ]
+      - [ "V100:3", "--gpus-per-node=V100:3" ]
+      - [ "V100:4", "--gpus-per-node=V100:4" ]
+      - [ "A40:1", "--gpus-per-node=A40:1" ]
+      - [ "A40:2", "--gpus-per-node=A40:2" ]
+      - [ "A40:3", "--gpus-per-node=A40:3" ]
+      - [ "A40:4", "--gpus-per-node=A40:4" ]
+      - [ "A100:1", "--gpus-per-node=A100:1" ]
+      - [ "A100:2", "--gpus-per-node=A100:2" ]
+      - [ "A100:3", "--gpus-per-node=A100:3" ]
+      - [ "A100:4", "--gpus-per-node=A100:4" ]
+      - [ "A100fat:1", "--gpus-per-node=A100fat:1" ]  # alvis
+      - [ "A100fat:2", "--gpus-per-node=A100fat:2" ]  # alvis
+      - [ "A100fat:3", "--gpus-per-node=A100fat:3" ]  # alvis
+      - [ "A100fat:4", "--gpus-per-node=A100fat:4" ]  # alvis
+      - [ "CPU", "x", disabled: true ]  # alvis
+      - [ "1 core", "-G NOGPU -n 1" ]  # alvis
+      - [ "2 core", "-G NOGPU -n 2" ]  # alvis
+      - [ "4 core", "-G NOGPU -n 4" ]  # alvis
   version:
     widget: "select"
     label: "Runtime"
@@ -49,7 +58,7 @@ attributes:
 <% glob_prettify_lookup(["/apps/portal/rstudio/*.sh"]).each do |pretty_path, path| %>
       - [ "<%= pretty_path %>", "<%= path %>" ]
 <% end %>
-      - [ "== User specified (create ~/portal/rstudio/*.sh) ==",  "" ]
+      - [ "== User specified (create ~/portal/rstudio/*.sh) ==",  "x", disabled: true ]
 <% glob_prettify_lookup(["#{Dir.home}/portal/rstudio/*.sh"]).each do |pretty_path, path| %>
       - [ "<%= pretty_path %>", "<%= path %>" ]
 <% end %>
@@ -59,4 +68,4 @@ attributes:
     data-filepicker: true
     data-target-file-type: dirs  # Valid values are: files, dirs, or both
     readonly: false
-    help: "Select your project directory; defaults to $HOME"
+    help: "Select your working directory; defaults to $HOME"
