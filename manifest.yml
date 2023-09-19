@@ -4,6 +4,6 @@ category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
-  This app will launch a [RStudio] server on Alvis
+  This app will launch a [RStudio] server.
 
   [RStudio]: https://rstudio.com/
