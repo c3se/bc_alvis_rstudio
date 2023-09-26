@@ -48,9 +48,9 @@ attributes:
       - [ "A100fat:3", "--gpus-per-node=A100fat:3" ]  # alvis
       - [ "A100fat:4", "--gpus-per-node=A100fat:4" ]  # alvis
       - [ "CPU", "x", disabled: true ]  # alvis
-      - [ "1 core", "-G NOGPU -n 1" ]  # alvis
-      - [ "2 core", "-G NOGPU -n 2" ]  # alvis
-      - [ "4 core", "-G NOGPU -n 4" ]  # alvis
+      - [ "1 core", "-C NOGPU -n 1" ]  # alvis
+      - [ "2 core", "-C NOGPU -n 2" ]  # alvis
+      - [ "4 core", "-C NOGPU -n 4" ]  # alvis
   version:
     widget: "select"
     label: "Runtime"
