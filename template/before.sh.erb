@@ -36,6 +36,9 @@ port=$(find_port)
 -%>
 export csrf_token="<%= csrf_token %>"
 
+# Get grafana link
+job_stats_link=$(job_stats.py $SLURM_JOB_ID)
+
 source "<%= context.version %>"
 
 # Generate SHA1 encrypted password (requires OpenSSL installed)
